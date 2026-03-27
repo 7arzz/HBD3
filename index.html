@@ -2,60 +2,80 @@
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
-    <title>Happy Birthday ✨</title>
+    <title>Happy Birthday [nama] ✨</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="A special birthday surprise for [nama] 🎂" />
 
     <!-- AOS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 
-    <!-- FONT -->
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap"
-      rel="stylesheet"
-    />
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
     <link rel="stylesheet" href="style.css" />
   </head>
 
   <body>
-    <!-- OPENING -->
+    <!-- Particle canvas -->
+    <canvas id="particles-canvas"></canvas>
+
+    <!-- Music button -->
+    <button id="music-btn" title="Toggle music">🎵</button>
+
+    <!-- Progress dots -->
+    <div class="progress-dots" id="progress-dots">
+      <div class="dot active" data-section="opening" onclick="goToSection('opening')"></div>
+      <div class="dot" data-section="gift"    onclick="goToSection('gift')"></div>
+      <div class="dot" data-section="heart"   onclick="goToSection('heart')"></div>
+      <div class="dot" data-section="closing" onclick="goToSection('closing')"></div>
+    </div>
+
+    <!-- ══ OPENING ══════════════════════════════ -->
     <section id="opening" class="section active">
-      <h1 data-aos="fade-up">Happy Birthday Firly🎂</h1>
-      <p data-aos="fade-up" data-aos-delay="200">
-        Udah nambah Umur aja nihhh.<br />
-        Heheheeee
+      <span class="badge" data-aos="fade-down">🎂 January 31 · Special Day</span>
+      <h1 data-aos="fade-up" data-aos-delay="100">
+        Happy Birthday<br/>[nama] 🌸
+      </h1>
+      <p data-aos="fade-up" data-aos-delay="250">
+        Udah nambah umur aja nihh...<br/>
+        Semoga semua doa-doamu terkabul ya 💕
       </p>
       <button
-        onclick="nextSection('gift')"
+        class="btn-primary"
+        onclick="goToSection('gift')"
         data-aos="zoom-in"
         data-aos-delay="400"
       >
-        Lanjut ✨
+        Buka Sesuatu ✨
       </button>
     </section>
 
-    <!-- GIFT -->
+    <!-- ══ GIFT ══════════════════════════════════ -->
     <section id="gift" class="section">
-      <p data-aos="fade-down">Aku ada sesuatu nihh buat youuu</p>
+      <p data-aos="fade-down">Ada sesuatu yang spesial buat kamu 🎁</p>
 
-      <div class="gift-box" onclick="openGift()">
+      <div class="gift-box" id="giftBox" onclick="openGift()">
+        <div class="gift-bow">
+          <div class="bow-left"></div>
+          <div class="bow-right"></div>
+        </div>
         <div class="gift-lid"></div>
         <div class="gift-ribbon vertical"></div>
         <div class="gift-ribbon horizontal"></div>
         <div class="gift-body"></div>
       </div>
 
-      <span class="hint">klik kotaknya 🎁</span>
+      <span class="hint">klik kotak hadiahnya 🎁</span>
     </section>
 
-    <!-- HEART -->
+    <!-- ══ HEART ══════════════════════════════════ -->
     <section id="heart" class="section">
-      <div class="heart" data-aos="zoom-in">❤️</div>
-      <div class="calendar-full" data-aos="fade-up" data-aos-delay="100">
-        <div class="calendar-title">January</div>
+      <span class="heart-icon" data-aos="zoom-in">❤️</span>
 
+      <div class="calendar-full" data-aos="fade-up" data-aos-delay="100">
+        <div class="calendar-title">January 2025</div>
         <div class="calendar-grid">
-          <!-- Hari -->
+          <!-- Header -->
           <div class="day">Sun</div>
           <div class="day">Mon</div>
           <div class="day">Tue</div>
@@ -63,65 +83,56 @@
           <div class="day">Thu</div>
           <div class="day">Fri</div>
           <div class="day">Sat</div>
-
-          <!-- Kosong sebelum 1 Jan (Jan mulai Rabu) -->
+          <!-- Empty before Wed Jan 1 -->
           <span></span>
           <span></span>
           <span></span>
-
-          <!-- Tanggal -->
-          <span>1</span><span>2</span><span>3</span><span>4</span> <span>5</span
-          ><span>6</span><span>7</span><span>8</span><span>9</span
-          ><span>10</span><span>11</span> <span>12</span><span>13</span
-          ><span>14</span><span>15</span><span>16</span><span>17</span
-          ><span>18</span> <span>19</span><span>20</span><span>21</span
-          ><span>22</span><span>23</span><span>24</span><span>25</span>
-          <span>26</span><span>27</span><span>28</span><span>29</span
-          ><span>30</span>
-
-          <!-- Tanggal spesial -->
+          <!-- Dates -->
+          <span>1</span><span>2</span><span>3</span><span>4</span>
+          <span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span>
+          <span>12</span><span>13</span><span>14</span><span>15</span><span>16</span><span>17</span><span>18</span>
+          <span>19</span><span>20</span><span>21</span><span>22</span><span>23</span><span>24</span><span>25</span>
+          <span>26</span><span>27</span><span>28</span><span>29</span><span>30</span>
+          <!-- Special day -->
           <span class="special">31 ❤️</span>
         </div>
       </div>
 
-      <h2 data-aos="fade-up">Hari ini pasti special banget ya kannn</h2>
-      <p data-aos="fade-up" data-aos-delay="200">
-        Maaf yaa aku kasih nya telat<br />
+      <h2 data-aos="fade-up">Hari ini pasti spesial banget ya</h2>
+      <p data-aos="fade-up" data-aos-delay="100">
+        Maaf ya aku kasih hadiahnya telat...<br/>
+        tapi niatnya selalu yang terbaik buat kamu 💕
       </p>
 
-      <!-- DANA KAGET -->
-      <div id="danaSurprise" class="hidden">
+      <!-- Dana surprise (hidden) -->
+      <div id="danaSurprise" class="hidden" data-aos="fade-up">
         <h3>🎉 Surprise kecil</h3>
-        <p>Bukan soal jumlahnya,<br />tapi niatnya.</p>
-
-        <!-- <a
-          href="https://link.dana.id/kaget?c=xxxxx"
-          target="_blank"
-          class="dana-btn"
-        >
-          Ambil Dana Kaget 💸
-        </a> -->
+        <p>Bukan soal jumlahnya,<br/>tapi niatnya.</p>
       </div>
 
-      <div class="heart-actions">
-        <a href="love.html" class="btn-open">Buka</a>
+      <div class="heart-actions" data-aos="fade-up" data-aos-delay="200">
+        <a href="love.html" class="btn-open">
+          💌 Buka Pesan
+        </a>
       </div>
     </section>
 
-    <!-- CLOSING -->
+    <!-- ══ CLOSING ═════════════════════════════════ -->
     <section id="closing" class="section">
-      <div class="card" data-aos="fade-up">
+      <div class="closing-card" data-aos="fade-up">
         <p>
-          Semoga hidup selalu<br />
-          lembut ke kamu.<br /><br />
-          Tetap jadi versi terbaik<br />
-          dari dirimu sendiri.
+          Semoga hidup selalu<br/>
+          lembut ke kamu.<br/><br/>
+          Tetap jadi versi terbaik<br/>
+          dari dirimu sendiri.<br/><br/>
+          Dan jangan lupa...<br/>
+          kamu itu berharga. ❤️
         </p>
-        <span>— dari seseorang yang peduli</span>
+        <span class="author">— dari seseorang yang peduli</span>
       </div>
     </section>
 
-    <!-- JS -->
+    <!-- ══ SCRIPTS ══════════════════════════════════ -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script src="script.js"></script>
