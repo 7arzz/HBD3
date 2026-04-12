@@ -1,173 +1,95 @@
-# 🎂 Happy Birthday Digital Card
+# 🎂 Happy Birthday Digital Card — Premium Edition
 
-Ucapan ulang tahun digital yang cantik, romantis, dan interaktif — lengkap dengan animasi hati, hujan ❤️, kartu pesan, dan musik latar.
-
----
-
-## ✨ Fitur
-
-- 🎁 Kotak hadiah interaktif dengan konfeti
-- ❤️ Animasi hati besar dari teks *"I love you"*
-- 💌 Kartu pesan yang bisa digeser (swipe/klik)
-- 🎵 Musik latar on/off
-- 📅 Kalender dengan tanggal ulang tahun yang ditandai
-- 📱 Responsif di semua ukuran layar (HP, tablet, laptop)
+Pilihan terbaik untuk memberikan kejutan ulang tahun yang cantik, romantis, dan interaktif. Proyek ini telah di-upgrade dengan visual premium, efek animasi halus, dan kemudahan kustomisasi.
 
 ---
 
-## 🚀 Cara Membuka
+## ✨ Fitur Unggulan
 
-Cukup buka file `index.html` di browser (Chrome / Firefox / Safari).
-
-> **Tidak perlu install apapun.** Tidak perlu internet setelah file didownload.
-
----
-
-## ✏️ Cara Kustomisasi
-
-### 1. Ganti Nama Penerima
-
-Cari teks `[nama]` di kedua file berikut dan ganti dengan nama yang kamu inginkan:
-
-**File: `index.html`**
-```html
-<!-- Baris 5 -->
-<title>Happy Birthday [nama] ✨</title>
-
-<!-- Baris 37 -->
-Happy Birthday<br/>[nama] 🌸
-```
-
-**File: `love.html`**
-```html
-<!-- Baris 6 -->
-<title>For You, [nama] 💌</title>
-```
-
-Juga di dalam pesan kartu (array `MESSAGES` di `love.html`), ada beberapa pesan yang menggunakan `[nama]` — ganti semua dengan nama yang sesuai.
-
-> 💡 **Tip cepat:** Gunakan fitur **Find & Replace** di Notepad / VS Code:
-> - Tekan `Ctrl + H`
-> - Cari: `[nama]`
-> - Ganti dengan: nama penerima (contoh: `Bella`)
-> - Klik **Replace All**
+- 🎁 **Premium Gift Box**: Kotak hadiah dengan visual 3D, animasi buka yang fantastis, efek kilauan (sparkles), dan getaran layar (screen shake) saat dibuka.
+- ❤️ **Magical Heart Animation**: Animasi hati besar yang terbentuk dari ratusan teks *"I love you"* yang menari-nari.
+- 💌 **Interactive Love Letters**: Puluhan kartu pesan yang bisa digeser (swipe di HP atau klik tombol) dengan progress bar di bagian bawah.
+- 📅 **Custom Calendar**: Kalender estetik yang menandai hari spesial sang penerima.
+- ✨ **Floating Particles**: Efek partikel cahaya yang memberikan kesan romantis dan hidup.
+- 📱 **Fully Responsive**: Tampilan sempurna di semua jenis perangkat (iPhone, Android, Tablet, hingga Desktop).
 
 ---
 
-### 2. Ganti Tanggal Ulang Tahun
+## 🚀 Cara Membuka Proyek
 
-**File: `index.html`** — ubah badge tanggal:
-```html
-<!-- Baris sekitar 33 -->
-<span class="badge">🎂 January 31 · Special Day</span>
-```
-Ganti `January 31` dengan bulan dan tanggal yang sesuai.
+Cukup buka file `index.html` menggunakan browser pilihan Anda (Chrome, Edge, Safari, atau Firefox).
 
-**File: `index.html`** — ubah judul kalender:
-```html
-<div class="calendar-title">January 2025</div>
-```
-
-Lalu sesuaikan juga tanggal yang diberi highlight (class `special`):
-```html
-<span class="special">31 ❤️</span>
-```
-Ganti angka `31` dengan tanggal ulang tahun yang benar.
-
-> ⚠️ Kalender di-*hardcode* (bukan otomatis), jadi pastikan urutan hari di grid sesuai dengan bulan yang dipilih.
+> **Penting:** Tidak perlu menginstal aplikasi tambahan apapun. Pastikan Anda memiliki koneksi internet saat pertama kali membuka untuk memuat font dan animasi premium.
 
 ---
 
-### 3. Ganti atau Tambah Pesan Kartu
+## ✏️ Panduan Kustomisasi (Sangat Mudah!)
 
-Buka file `love.html`, cari bagian:
+Anda tidak perlu mencari-cari teks di ratusan baris kode. Cukup ubah bagian **CONFIG** di dua file berikut:
+
+### 1. Mengubah Nama & Tanggal Utama
+Buka file **`script.js`** dan temukan bagian ini di paling atas:
 
 ```javascript
-const MESSAGES = [
-  "Pesan 1...",
-  "Pesan 2...",
-  // dst.
-];
+const CONFIG = {
+  name: "Nama Lengkap",      // Ganti dengan nama lengkap target
+  nickname: "Nama Panggilan", // Ganti dengan nama panggilan (akan muncul di judul)
+  date: "January 31",        // Tanggal yang muncul di badge atas
+  monthYear: "January 2025",  // Judul bulan yang muncul di atas kalender
+  specialDay: 31,            // Angka tanggal yang ingin ditandai (angka saja)
+};
 ```
 
-- **Edit** pesan yang sudah ada sesuai keinginan
-- **Tambah** pesan baru dengan menambahkan baris baru di dalam array
-- **Hapus** pesan yang tidak diinginkan
-- Gunakan `<br/>` untuk pindah baris di dalam satu kartu
+### 2. Mengubah Nama di Halaman Pesan (Surprise Part)
+Buka file **`love.html`** dan temukan bagian ini di dalam tag `<script>` (sekitar baris 517):
 
-**Contoh:**
 ```javascript
-"Selamat ulang tahun, Bella! 🎂<br/>Semoga selalu bahagia ya 💕",
+const CONFIG = {
+  name: "Nama Kamu", // Ganti dengan nama si dia agar masuk ke dalam kalimat pesan
+};
 ```
 
----
-
-### 4. Ganti Pesan di Halaman Utama
-
-**File: `index.html`** — edit teks pembuka:
-```html
-<p>
-  Udah nambah umur aja nihh...<br/>
-  Semoga semua doa-doamu terkabul ya 💕
-</p>
-```
-
-Dan teks penutup:
-```html
-<p>
-  Semoga hidup selalu<br/>
-  lembut ke kamu.<br/>...
-</p>
-```
+### 3. Mengubah atau Menulis Pesan Sendiri
+Di file **`love.html`**, Anda bisa bebas mengubah teks di dalam `const MESSAGES`. Gunakan `<br/>` jika ingin membuat baris baru dalam satu kartu pesan.
 
 ---
 
 ## 📁 Struktur File
 
-```
-HBD/
-├── index.html   ← Halaman utama (opening, hadiah, kalender, penutup)
-├── love.html    ← Halaman animasi hati + kartu pesan
-├── style.css    ← Semua tampilan halaman utama
-└── script.js    ← Logika halaman utama (navigasi, partikel, musik)
-```
+- `index.html` : Halaman utama (Opening, Hadiah, Kalender, & Penutup).
+- `love.html` : Halaman kejutan (Animasi Hati & Surat Cinta).
+- `style.css` : File pengaturan tampilan, warna, dan animasi.
+- `script.js` : File logika utama dan konfigurasi data.
+- `README.md` : Panduan penggunaan ini.
 
 ---
 
-## 🌐 Cara Share ke Penerima
+## 🌐 Cara Membagikan (Online)
 
-Kamu bisa share dengan beberapa cara:
-
-| Cara | Keterangan |
-|---|---|
-| **Kirim folder** | Zip semua file → kirim via WhatsApp / Google Drive |
-| **GitHub Pages** | Upload ke GitHub → aktifkan Pages → bagikan link |
-| **Netlify / Vercel** | Drag & drop folder → dapat link gratis |
-
-> Jika ingin link yang bisa dibuka langsung dari HP tanpa install, gunakan **GitHub Pages** atau **Netlify** (gratis).
+Agar bisa dibuka langsung dari HP oleh orang yang Anda sayangi, Anda bisa meng-upload folder ini secara gratis ke:
+1. **Netlify Drop** (Tinggal drag & drop folder, langsung dapat link).
+2. **GitHub Pages**.
+3. **Vercel**.
 
 ---
 
-## ❓ FAQ
+## ❓ FAQ (Pertanyaan Umum)
 
-**Q: Apakah bisa dibuka di HP?**  
-A: Ya! Sudah responsif untuk semua ukuran layar.
+**Q: Apakah saya bisa mengganti warna temanya?**  
+A: Bisa. Anda bisa membuka `style.css` dan mengubah nilai `--pink` di bagian `:root`.
 
-**Q: Apakah butuh internet?**  
-A: Butuh internet saat pertama kali dibuka (untuk memuat font & animasi dari CDN). Setelah itu bisa offline.
+**Q: Animasi hatinya kok belum muncul?**  
+A: Tunggu sekitar 8-10 detik setelah masuk ke halaman `love.html`. Hati akan terbentuk secara otomatis setelah hujan jantung selesai.
 
-**Q: Musik tidak keluar?**  
-A: Klik tombol 🎵 di pojok kanan atas. Browser memerlukan interaksi pengguna sebelum memainkan audio.
-
-**Q: Animasi hati tidak muncul?**  
-A: Tunggu sekitar 10–12 detik, animasi akan muncul secara otomatis.
+**Q: Mengapa tidak ada suaranya?**  
+A: Fitur musik telah dihapus dalam versi upgrade ini untuk memastikan kompatibilitas penuh di semua browser HP. Jika ingin menambahkan musik, Anda bisa mengintegrasikannya secara manual.
 
 ---
 
-## 💬 Butuh Bantuan?
+## 💬 Butuh Bantuan Lanjutan?
 
-Hubungi penjual melalui platform tempat kamu membeli produk ini.
+Jika Anda mengalami kesulitan teknis yang tidak dijelaskan di sini, silakan hubungi penjual melalui platform tempat Anda membeli produk ini. Kami siap membantu agar kejutan Anda berjalan lancar!
 
 ---
 
-*Made with ❤️ — Digital Birthday Card*
+*Dibuat dengan ❤️ untuk momen spesial Anda.*

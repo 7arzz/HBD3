@@ -293,36 +293,6 @@
 
       #backBtn:active { transform: scale(0.96); }
 
-      /* ── MUSIC BTN ───────────────────────────── */
-      #musicBtn {
-        position: fixed;
-        top: calc(var(--top-offset) + env(safe-area-inset-top, 0px));
-        right: var(--top-offset);
-        z-index: 20;
-        width: 42px; height: 42px;
-        border-radius: 50%;
-        border: 1px solid rgba(255,77,141,0.35);
-        background: rgba(255,77,141,0.09);
-        color: var(--pink-light);
-        font-size: 16px;
-        cursor: pointer;
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: var(--tr);
-      }
-
-      #musicBtn:hover  { background: rgba(255,77,141,0.22); transform: scale(1.1); }
-      #musicBtn:active { transform: scale(0.94); }
-      #musicBtn.playing { animation: musicRing 1.5s ease-in-out infinite; }
-
-      @keyframes musicRing {
-        0%, 100% { box-shadow: 0 0 0 0 rgba(255,77,141,0.45); }
-        50%       { box-shadow: 0 0 0 8px rgba(255,77,141,0); }
-      }
-
       /* ── PROGRESS BAR ────────────────────────── */
       #progress-bar {
         position: fixed;
@@ -500,7 +470,6 @@
 
     <!-- Top controls -->
     <button id="backBtn">← Kembali</button>
-    <button id="musicBtn" title="Toggle musik">🎵</button>
 
     <!-- Card navigation -->
     <div class="card-wrapper">
@@ -518,15 +487,20 @@
     <div id="progress-bar" style="width:0%"></div>
 
     <script>
-    /* ════════════════════════════════════════════
-       LOVE PAGE SCRIPT — Full Upgrade
-       ════════════════════════════════════════════ */
+    // ── CONFIGURATION ──────────────────────────────
+    const CONFIG = {
+      name: "[nama]", // Ganti dengan nama yang berulang tahun
+    };
+
+    // Update texts from config
+    document.title = `For You, ${CONFIG.name} 💌`;
+    document.querySelector('meta[name="description"]').setAttribute("content", `A love letter just for you, ${CONFIG.name}.`);
 
     // ── MESSAGE DATA ──────────────────────────────
     const MESSAGES = [
       "Selamat bertambah usia! 🌸<br/>Semoga semua impianmu terkabul satu-satu ya 💕",
       "Happy Birthday! ✨<br/>Semoga hari ini jadi awal dari hal-hal indah.",
-      "Semoga selalu dikelilingi orang-orang yang baik 🌷<br/>dimanapun [nama] berada.",
+      `Semoga selalu dikelilingi orang-orang yang baik 🌷<br/>dimanapun ${CONFIG.name} berada.`,
       "Semoga cita-citamu terwujud 🌟<br/>dan kamu bisa membahagiakan orang yang kamu sayangi.",
       "Teruslah tumbuh 💫<br/>Doaku selalu yang terbaik buat kamu.",
       "Makasih udah ada sampai sejauh ini 🤍<br/>Maaf kalau aku kadang nyebelin.",
@@ -545,7 +519,7 @@
       "Kamu itu berharga 💎<br/>Jangan lupa itu.",
       "Kalau dunia jahat ke kamu,<br/>jadilah baik pada dirimu sendiri 🌙",
       "Semua yang terasa berat,<br/>akan selalu berlalu 🌊",
-      "Selamat ulang tahun, [nama]! 🎂<br/>Panjang umur, sehat, dan bahagia selalu 🤍",
+      `Selamat ulang tahun, ${CONFIG.name}! 🎂<br/>Panjang umur, sehat, dan bahagia selalu 🤍`,
     ];
 
     // ── DOM ───────────────────────────────────────
@@ -667,40 +641,6 @@
         requestAnimationFrame(draw);
       }
       draw();
-    })();
-
-    // ── MUSIC TOGGLE (Web Audio) ───────────────────
-    (function initMusic() {
-      const btn = document.getElementById('musicBtn');
-      let audioCtx, gainNode, playing = false;
-
-      function createAudio() {
-        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-        gainNode = audioCtx.createGain();
-        gainNode.gain.value = 0;
-        gainNode.connect(audioCtx.destination);
-
-        const freqs = [261.63, 329.63, 392.00, 493.88, 523.25];
-        freqs.forEach((freq, i) => {
-          const osc  = audioCtx.createOscillator();
-          const gn   = audioCtx.createGain();
-          osc.type   = 'sine';
-          osc.frequency.value = freq;
-          gn.gain.value = 0.045 + (i === 0 ? 0.03 : 0);
-          osc.connect(gn);
-          gn.connect(gainNode);
-          osc.start();
-        });
-      }
-
-      btn.addEventListener('click', () => {
-        if (!audioCtx) createAudio();
-        if (audioCtx.state === 'suspended') audioCtx.resume();
-        playing = !playing;
-        gainNode.gain.setTargetAtTime(playing ? 0.07 : 0, audioCtx.currentTime, 0.4);
-        btn.textContent = playing ? '🔊' : '🎵';
-        btn.classList.toggle('playing', playing);
-      });
     })();
 
     // ── HEART ANIMATION ────────────────────────────

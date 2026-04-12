@@ -1,10 +1,39 @@
 /* ============================================================
    script.js – HBD Project Full Upgrade
-   Handles: sections, particles, gift, confetti, music toggle
+   Handles: sections, particles, gift, confetti, setupConfig
    ============================================================ */
+
+// ── CONFIGURATION ──────────────────────────────────────────
+const CONFIG = {
+  name: "[nama]",           // Ganti dengan nama yang berulang tahun
+  nickname: "[nama]",       // Nama panggilan untuk teks tertentu
+  date: "January 31",       // Ganti dengan tanggal lahir (e.g. "January 31")
+  monthYear: "January 2025", // Ganti untuk judul kalender
+  specialDay: 31,           // Angka tanggal lahir untuk kalender
+};
 
 // ── AOS ────────────────────────────────────────────────────
 AOS.init({ duration: 900, easing: 'ease-out-cubic', once: true });
+
+// ── SETUP CONFIG ───────────────────────────────────────────
+function setupConfig() {
+  document.title = `Happy Birthday ${CONFIG.name} ✨`;
+  
+  const userName = document.getElementById('user-name');
+  if (userName) userName.innerHTML = `Happy Birthday<br/>${CONFIG.nickname} 🌸`;
+
+  const dateBadge = document.getElementById('date-badge');
+  if (dateBadge) dateBadge.textContent = `🎂 ${CONFIG.date} · Special Day`;
+
+  const calTitle = document.getElementById('calendar-title');
+  if (calTitle) calTitle.textContent = CONFIG.monthYear;
+
+  const calSpecial = document.getElementById('calendar-special');
+  if (calSpecial) calSpecial.textContent = `${CONFIG.specialDay} ❤️`;
+}
+
+// Call on load
+document.addEventListener('DOMContentLoaded', setupConfig);
 
 // ── STATE ──────────────────────────────────────────────────
 let currentSection = 'opening';
@@ -49,7 +78,13 @@ function openGift() {
   if (giftOpened) return;
   giftOpened = true;
 
+  const giftSection = document.getElementById('gift');
   const box = document.getElementById('giftBox');
+  
+  // Add impact class
+  giftSection.style.animation = 'none';
+  setTimeout(() => { giftSection.style.animation = 'sectionShake 0.4s ease'; }, 10);
+  
   box.classList.add('open');
 
   // First confetti burst
@@ -141,64 +176,4 @@ function specialDay() {
   }
 
   draw();
-})();
-
-// ── MUSIC TOGGLE ───────────────────────────────────────────
-(function initMusic() {
-  const btn = document.getElementById('music-btn');
-  if (!btn) return;
-
-  // Simple ambient audio using Web Audio API
-  let audioCtx  = null;
-  let playing   = false;
-  let gainNode  = null;
-  let oscillators = [];
-
-  function createAmbient() {
-    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-    gainNode = audioCtx.createGain();
-    gainNode.gain.setValueAtTime(0.06, audioCtx.currentTime);
-    gainNode.connect(audioCtx.destination);
-
-    // Soft pad chord — C major: C4-E4-G4-B4
-    const freqs = [261.63, 329.63, 392.00, 493.88, 523.25];
-    freqs.forEach((freq, i) => {
-      const osc = audioCtx.createOscillator();
-      osc.type = 'sine';
-      osc.frequency.value = freq;
-
-      const oscGain = audioCtx.createGain();
-      oscGain.gain.setValueAtTime(0.04 + (i === 0 ? 0.04 : 0), audioCtx.currentTime);
-
-      osc.connect(oscGain);
-      oscGain.connect(gainNode);
-      osc.start();
-      oscillators.push(osc);
-    });
-  }
-
-  function startMusic() {
-    if (!audioCtx) createAmbient();
-    if (audioCtx.state === 'suspended') audioCtx.resume();
-    gainNode.gain.setTargetAtTime(0.06, audioCtx.currentTime, 0.5);
-    playing = true;
-    btn.textContent = '🔊';
-    btn.classList.add('playing');
-    btn.title = 'Matikan musik';
-  }
-
-  function stopMusic() {
-    if (audioCtx) {
-      gainNode.gain.setTargetAtTime(0, audioCtx.currentTime, 0.4);
-    }
-    playing = false;
-    btn.textContent = '🎵';
-    btn.classList.remove('playing');
-    btn.title = 'Putar musik';
-  }
-
-  btn.addEventListener('click', () => {
-    if (playing) stopMusic();
-    else startMusic();
-  });
 })();
