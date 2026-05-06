@@ -37,7 +37,7 @@
         --card-min-h: 160px;
         --card-width: min(92%, 440px);
         --card-pad: 26px 28px;
-        --card-font: 1rem;
+        --card-font: clamp(0.85rem, 2.5vw, 1rem);
         --nav-size: 52px;
         --nav-font: 24px;
         --back-font: 0.83rem;
@@ -213,46 +213,66 @@
         position: absolute;
         inset: 0;
         background: var(--surface);
-        border: 1px solid rgba(139, 92, 246, 0.28);
+        border: 1px solid rgba(139, 92, 246, 0.35);
         backdrop-filter: blur(var(--blur));
         -webkit-backdrop-filter: blur(var(--blur));
         padding: var(--card-pad);
         border-radius: var(--radius);
         color: #f5f3ff;
         font-size: var(--card-font);
-        line-height: 1.75;
+        line-height: 1.8;
         text-align: center;
         opacity: 0;
-        transform: translateY(20px) scale(0.97);
-        transition: all 0.55s cubic-bezier(0.4, 0, 0.2, 1);
-        box-shadow:
-          0 8px 40px rgba(139, 92, 246, 0.18),
-          inset 0 1px 0 rgba(255, 255, 255, 0.06);
+        transform: translateY(25px) scale(0.96);
+        transition: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+        box-shadow: 
+          0 12px 50px rgba(0, 0, 0, 0.4),
+          0 0 20px rgba(139, 92, 246, 0.15),
+          inset 0 1px 1px rgba(255, 255, 255, 0.1);
         pointer-events: none;
         display: flex;
         align-items: center;
         justify-content: center;
         min-height: var(--card-min-h);
         height: auto;
+        overflow: hidden;
+      }
+
+      .msg-card span {
+        display: block;
+        width: 100%;
+        animation: cardFadeIn 0.5s ease forwards;
+      }
+
+      @keyframes cardFadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
       }
 
       .msg-card.active {
         opacity: 1;
         transform: translateY(0) scale(1);
         pointer-events: auto;
+        z-index: 5;
       }
 
       /* Card counter */
       .card-counter {
-        font-size: 0.72rem;
+        font-size: 0.75rem;
+        font-weight: 600;
         color: var(--purple-light);
-        opacity: 0.6;
+        background: rgba(139, 92, 246, 0.12);
+        padding: 4px 14px;
+        border-radius: 999px;
+        border: 1px solid rgba(139, 92, 246, 0.2);
         position: absolute;
-        bottom: -22px;
+        bottom: -32px;
         left: 50%;
         transform: translateX(-50%);
         white-space: nowrap;
-        letter-spacing: 0.06em;
+        letter-spacing: 0.1em;
+        backdrop-filter: blur(5px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
       }
 
       /* ── NAV BUTTONS ─────────────────────────── */
@@ -475,12 +495,12 @@
       /* ── max 600px (Mobile portrait — primary target) ── */
       @media (max-width: 600px) {
         :root {
-          --card-width: calc(100% - 112px); /* leave room for nav btns */
-          --card-min-h: 148px;
-          --card-pad: 20px 18px;
-          --card-font: 0.9rem;
-          --card-bottom-pad: 28px;
-          --nav-size: 44px;
+          --card-width: calc(100% - 110px); /* leave room for nav btns */
+          --card-min-h: 155px;
+          --card-pad: 22px 20px;
+          --card-font: 0.88rem;
+          --card-bottom-pad: 32px;
+          --nav-size: 46px;
           --nav-font: 20px;
           --back-font: 0.78rem;
           --back-pad: 8px 14px;
@@ -508,11 +528,12 @@
       /* ── max 480px (Small phones: iPhone SE, Galaxy A) ── */
       @media (max-width: 480px) {
         :root {
-          --card-min-h: 138px;
-          --card-pad: 18px 16px;
-          --card-font: 0.88rem;
-          --card-bottom-pad: 24px;
-          --nav-size: 40px;
+          --card-width: calc(100% - 100px);
+          --card-min-h: 150px;
+          --card-pad: 20px 18px;
+          --card-font: 0.84rem;
+          --card-bottom-pad: 28px;
+          --nav-size: 42px;
           --nav-font: 18px;
           --heart-size: min(68vw, 32vh, 270px);
           --heart-top: calc(50% - 8vh);
@@ -577,9 +598,25 @@
         --pb-rot2: 2deg;
       }
 
-      .pb-1 { top: 20%; left: 6%; animation-delay: 0s; }
-      .pb-2 { bottom: 20%; left: 4%; animation-delay: -1.5s; --pb-rot1: 3deg; --pb-rot2: -3deg; }
-      .pb-3 { top: 40%; right: 5%; animation-delay: -3s; --pb-rot1: -5deg; --pb-rot2: 5deg; }
+      .pb-1 {
+        top: 32%;
+        left: 6%;
+        animation-delay: 0s;
+      }
+      .pb-2 {
+        bottom: 20%;
+        left: 4%;
+        animation-delay: -1.5s;
+        --pb-rot1: 3deg;
+        --pb-rot2: -3deg;
+      }
+      .pb-3 {
+        top: 52%;
+        right: 5%;
+        animation-delay: -3s;
+        --pb-rot1: -5deg;
+        --pb-rot2: 5deg;
+      }
 
       .polaroid-frame {
         background: #fdfaff;
@@ -588,7 +625,9 @@
         flex-direction: column;
         border-radius: 3px;
         width: 170px;
-        box-shadow: 0 8px 25px rgba(0,0,0,0.3), inset 0 0 20px rgba(139, 92, 246, 0.1);
+        box-shadow:
+          0 8px 25px rgba(0, 0, 0, 0.3),
+          inset 0 0 20px rgba(139, 92, 246, 0.1);
         border: 1px solid #ebd5ff;
         transition: transform 0.5s ease;
       }
@@ -624,7 +663,9 @@
         background: rgba(167, 139, 250, 0.65);
         backdrop-filter: blur(2px);
         -webkit-backdrop-filter: blur(2px);
-        box-shadow: 0 2px 4px rgba(0,0,0,0.1), inset 0 0 5px rgba(255,255,255,0.3);
+        box-shadow:
+          0 2px 4px rgba(0, 0, 0, 0.1),
+          inset 0 0 5px rgba(255, 255, 255, 0.3);
         z-index: 3;
       }
       .tape-1 {
@@ -660,28 +701,95 @@
       @keyframes floatY {
         0%,
         100% {
-          transform: translateY(-50%) scale(var(--pb-scale)) rotate(var(--pb-rot1));
+          transform: translateY(-50%) scale(var(--pb-scale))
+            rotate(var(--pb-rot1));
         }
         50% {
-          transform: translateY(-53%) scale(var(--pb-scale)) rotate(var(--pb-rot2));
+          transform: translateY(-53%) scale(var(--pb-scale))
+            rotate(var(--pb-rot2));
         }
       }
 
       /* Photobooth Breakpoints */
       @media (min-width: 1024px) {
-        .pb-float { --pb-scale: 1.2; }
+        .pb-float {
+          --pb-scale: 1.2;
+        }
       }
       @media (max-width: 768px) {
-        .pb-float { --pb-scale: 0.7; }
-        .pb-3 { top: 15%; right: -20px; }
-        .pb-2 { bottom: 10%; left: -10px; }
-        .pb-1 { top: 10%; left: -15px; }
+        .pb-float {
+          --pb-scale: 0.7;
+        }
+        .pb-3 {
+          top: 30%;
+          right: -20px;
+        }
+        .pb-2 {
+          bottom: 12%;
+          left: -10px;
+        }
+        .pb-1 {
+          top: 24%;
+          left: -25px;
+        }
       }
       @media (max-width: 480px) {
-        .pb-float { --pb-scale: 0.55; }
-        .pb-3 { top: 12%; right: -30px; }
-        .pb-2 { bottom: 8%; left: -25px; }
-        .pb-1 { top: 8%; left: -25px; }
+        .pb-float {
+          --pb-scale: 0.55;
+        }
+        .pb-3 {
+          top: 28%;
+          right: -30px;
+        }
+        .pb-2 {
+          bottom: 10%;
+          left: -25px;
+        }
+        .pb-1 {
+          top: 22%;
+          left: -25px;
+        }
+      }
+
+      /* ── MUSIC BUTTON ─────────────────────────── */
+      #musicBtn {
+        position: fixed;
+        top: calc(var(--top-offset) + env(safe-area-inset-top, 0px));
+        right: var(--top-offset);
+        z-index: 100;
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        border: 1px solid rgba(139, 92, 246, 0.4);
+        background: rgba(139, 92, 246, 0.15);
+        color: var(--purple-light);
+        font-size: 22px;
+        cursor: pointer;
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+      }
+      #musicBtn:hover {
+        background: rgba(139, 92, 246, 0.28);
+        transform: scale(1.1);
+      }
+      #musicBtn.playing {
+        animation: pulseMusic 2s infinite;
+      }
+      @keyframes pulseMusic {
+        0% {
+          box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.7);
+        }
+        70% {
+          box-shadow: 0 0 0 12px rgba(139, 92, 246, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(139, 92, 246, 0);
+        }
       }
     </style>
   </head>
@@ -700,15 +808,25 @@
       <div class="polaroid-frame">
         <div class="polaroid-tape tape-1"></div>
         <div class="polaroid-tape tape-2"></div>
-        <svg class="floral-art floral-top" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-          <g stroke="#7c3aed" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <svg
+          class="floral-art floral-top"
+          viewBox="0 0 64 64"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g
+            stroke="#7c3aed"
+            stroke-width="1.5"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
             <path d="M10 10 Q 25 5 35 15 Q 25 25 10 15 Z" />
             <path d="M10 10 Q 5 25 15 35 Q 25 25 15 10 Z" />
             <path d="M10 10 C 20 20 30 30 40 40" />
             <path d="M25 25 Q 40 20 45 35 Q 30 40 25 25 Z" />
           </g>
         </svg>
-        <img src="https://via.placeholder.com/200" class="polaroid-photo" alt="Photo 1" />
+        <img src="assets/photo1.jpg" class="polaroid-photo" alt="Photo 1" />
         <div class="polaroid-text">❤ Our Story</div>
       </div>
     </div>
@@ -717,13 +835,24 @@
       <div class="polaroid-frame">
         <div class="polaroid-tape tape-1"></div>
         <div class="polaroid-tape tape-2"></div>
-        <svg class="floral-art floral-bottom" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-          <g stroke="#7c3aed" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M70 70 Q 50 80 30 60 Q 50 40 70 50 Z" /><path d="M70 70 Q 80 50 60 30 Q 40 50 50 70 Z" />
+        <svg
+          class="floral-art floral-bottom"
+          viewBox="0 0 80 80"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g
+            stroke="#7c3aed"
+            stroke-width="1.5"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M70 70 Q 50 80 30 60 Q 50 40 70 50 Z" />
+            <path d="M70 70 Q 80 50 60 30 Q 40 50 50 70 Z" />
             <path d="M70 70 C 50 50 30 30 20 20" />
           </g>
         </svg>
-        <img src="https://via.placeholder.com/200" class="polaroid-photo" alt="Photo 2" />
+        <img src="assets/photo2.jpg" class="polaroid-photo" alt="Photo 2" />
         <div class="polaroid-text">✨ Sweet Moments</div>
       </div>
     </div>
@@ -732,18 +861,33 @@
       <div class="polaroid-frame">
         <div class="polaroid-tape tape-1"></div>
         <div class="polaroid-tape tape-2"></div>
-        <svg class="floral-art floral-top" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
-          <g stroke="#7c3aed" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <svg
+          class="floral-art floral-top"
+          viewBox="0 0 64 64"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <g
+            stroke="#7c3aed"
+            stroke-width="1.5"
+            fill="none"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
             <path d="M10 10 Q 5 25 15 35 Q 25 25 15 10 Z" />
           </g>
         </svg>
-        <img src="https://via.placeholder.com/200" class="polaroid-photo" alt="Photo 3" />
+        <img src="assets/photo3.jpg" class="polaroid-photo" alt="Photo 3" />
         <div class="polaroid-text">🌷 Forever</div>
       </div>
     </div>
 
     <!-- Top controls -->
     <button id="backBtn">← Kembali</button>
+    <button id="musicBtn" title="Play/Pause Music">🎵</button>
+
+    <audio id="bgMusic" loop>
+      <source src="assets/GabriellaFernaldi-Biru.mp3.mpeg" type="audio/mpeg" />
+    </audio>
 
     <!-- Card navigation -->
     <div class="card-wrapper">
@@ -776,28 +920,24 @@
 
       // ── MESSAGE DATA ──────────────────────────────
       const MESSAGES = [
-        "Selamat bertambah usia! 🌸<br/>Semoga semua impianmu terkabul satu-satu ya 💕",
-        "Happy Birthday! ✨<br/>Semoga hari ini jadi awal dari hal-hal indah.",
-        `Semoga selalu dikelilingi orang-orang yang baik 🌷<br/>dimanapun ${CONFIG.name} berada.`,
-        "Semoga cita-citamu terwujud 🌟<br/>dan kamu bisa membahagiakan orang yang kamu sayangi.",
-        "Teruslah tumbuh 💫<br/>Doaku selalu yang terbaik buat kamu.",
-        "Makasih udah ada sampai sejauh ini 🤍<br/>Maaf kalau aku kadang nyebelin.",
-        "❤️ Love You ❤️",
-        "Dari jauh pun, aku selalu doakan yang terbaik buat kamu 🌙",
-        "Aku beruntung banget ketemu kamu 🥺<br/>Love you so much!",
-        "Jangan dipendam sendiri ya 💗<br/>Cerita aja, aku di sini kok.",
-        "Kalau ada 1000 alasan menyerah,<br/>cari 1001 alasan buat bertahan 🔥",
-        "Even the bad times feel better when I'm with you 🌺",
-        "With you till the end 😄<br/>anjayyy",
-        "Kamu kuat kok 💪<br/>Aku percaya kamu bisa.",
-        "Gagal itu biasa 🌧️<br/>Bangkit lagi itu luar biasa.",
-        "Jika dunia tidak berpihak,<br/>aku tetap ada buat kamu 💕",
-        "Jangan insecure 🌷<br/>Kamu punya kelebihan yang orang lain ga punya.",
-        "Bilang 'makasih' ke dirimu sendiri 🌸<br/>Kamu udah berjuang sejauh ini.",
-        "Kamu itu berharga 💎<br/>Jangan lupa itu.",
-        "Kalau dunia jahat ke kamu,<br/>jadilah baik pada dirimu sendiri 🌙",
-        "Semua yang terasa berat,<br/>akan selalu berlalu 🌊",
-        `Selamat ulang tahun, ${CONFIG.name}! 🎂<br/>Panjang umur, sehat, dan bahagia selalu 🤍`,
+        "heyyyy, harii ini u bertambah umur ke tujuh belass nichhh ‼️",
+        "semogaaa harii ini jadi awal dari hari hari yang indah kelakk...",
+        "i hope fafaa always di kelilingi orang orang baik di mana pun fafaa beradaaa",
+        "semogaa hari ini bisa jadi awal untuk mulai meraih cita cita yang kamu harapkan 🤩",
+        "keep growing, my prayers are always the best for you ^^",
+        "thank u atas semua waktu yang udah kita habisin bareng-bareng...",
+        "jujuurr, bingungg pass mau nyampain ini biar kamu bacaa 🫠",
+        "kamu selaluuu jadi orang yang buat aku ketawaaa, even though sometimes a little sarcastic..",
+        "butt, aku tau kadang sarkas mu buat kebaikan guaa sichhh 😛",
+        "maaaff jugaa, aku selalu lupa untuk give you a gift selama kitaa bareng...",
+        "tapiii kali inii aku berusahaa give your best this year",
+        "jadiii taunn inii gua ga kelupaan lagiii, walauu udahhh susahhh ketemuu and mabar lagii sich",
+        "kalauuu u adaa masalah bisaa lahh elu ceritaa or call aku langsungg",
+        "because there is always a place for you, jadi uu bisaa ceritaa ke akuu",
+        "pokok dari semuanya ialah aku harap segala yang terbaik selalu mengikuti uu untuk start ke jalan yang lebih jauhh...",
+        "kata kataa harii iniii",
+        "walau terlambat selamat atas ulang tahun muu - Baek Yi-jin",
+        "byeee, see uu next year dengan gebrakan lainnya 😝😝",
       ];
 
       // ── DOM ───────────────────────────────────────
@@ -886,6 +1026,54 @@
       document.getElementById("backBtn").addEventListener("click", () => {
         window.location.href = "index.html";
       });
+
+      // ── MUSIC CONTROL ─────────────────────────────
+      const musicBtn = document.getElementById("musicBtn");
+      const bgMusic = document.getElementById("bgMusic");
+      let isPlaying = false;
+
+      musicBtn.addEventListener("click", () => {
+        if (isPlaying) {
+          bgMusic.pause();
+          musicBtn.textContent = "🎵";
+          musicBtn.classList.remove("playing");
+        } else {
+          bgMusic.play();
+          musicBtn.textContent = "⏸️";
+          musicBtn.classList.add("playing");
+        }
+        isPlaying = !isPlaying;
+      });
+
+      // Attempt auto-play on load
+      window.addEventListener("load", () => {
+        // Many browsers block autoplay unless there's a previous interaction.
+        // Since the user clicks a button to get here, it might work.
+        bgMusic
+          .play()
+          .then(() => {
+            isPlaying = true;
+            musicBtn.textContent = "⏸️";
+            musicBtn.classList.add("playing");
+          })
+          .catch((err) => {
+            console.log("Autoplay blocked, waiting for interaction");
+          });
+      });
+
+      // Backup: Play on first click anywhere if autoplay was blocked
+      window.addEventListener(
+        "click",
+        () => {
+          if (!isPlaying) {
+            bgMusic.play();
+            isPlaying = true;
+            musicBtn.textContent = "⏸️";
+            musicBtn.classList.add("playing");
+          }
+        },
+        { once: true },
+      );
 
       // ── PARTICLE CANVAS ───────────────────────────
       (function initParticles() {

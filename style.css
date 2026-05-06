@@ -402,10 +402,20 @@ body::after {
 #heart { justify-content: flex-start; padding-top: 48px; gap: 20px; }
 
 .heart-icon {
-  font-size: 90px; line-height: 1;
+  font-size: 90px;
+  line-height: 1;
   animation: heartbeat 1.4s ease-in-out infinite;
   filter: drop-shadow(0 0 30px rgba(139, 92, 246, 0.75));
   display: block;
+}
+
+.sticker-img {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 20px;
+  border: 3px solid var(--purple-light);
+  margin-bottom: 10px;
 }
 
 @keyframes heartbeat {
