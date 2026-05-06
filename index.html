@@ -4,13 +4,19 @@
     <meta charset="UTF-8" />
     <title>Happy Birthday [nama] ✨</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="A special birthday surprise for [nama] 🎂" />
+    <meta
+      name="description"
+      content="A special birthday surprise for [nama] 🎂"
+    />
 
     <!-- AOS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
 
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
 
     <link rel="stylesheet" href="style.css" />
   </head>
@@ -21,20 +27,37 @@
 
     <!-- Progress dots -->
     <div class="progress-dots" id="progress-dots">
-      <div class="dot active" data-section="opening" onclick="goToSection('opening')"></div>
-      <div class="dot" data-section="gift"    onclick="goToSection('gift')"></div>
-      <div class="dot" data-section="heart"   onclick="goToSection('heart')"></div>
-      <div class="dot" data-section="closing" onclick="goToSection('closing')"></div>
+      <div
+        class="dot active"
+        data-section="opening"
+        onclick="goToSection('opening')"
+      ></div>
+      <div class="dot" data-section="gift" onclick="goToSection('gift')"></div>
+      <div
+        class="dot"
+        data-section="heart"
+        onclick="goToSection('heart')"
+      ></div>
+      <div
+        class="dot"
+        data-section="closing"
+        onclick="goToSection('closing')"
+      ></div>
     </div>
 
     <!-- ══ OPENING ══════════════════════════════ -->
     <section id="opening" class="section active">
-      <span class="badge" id="date-badge" data-aos="fade-down">🎂 January 31 · Special Day</span>
+      <span class="badge" id="date-badge" data-aos="fade-down"
+        >🎂 May 7 · Special Day</span
+      >
+      <div class="header-photo-container" data-aos="fade-down">
+        <img src="header_photo.png" alt="Header Photo" class="header-photo" />
+      </div>
       <h1 data-aos="fade-up" data-aos-delay="100" id="user-name">
-        Happy Birthday<br/>[nama] 🌸
+        Happy Birthday<br />[nama] 🌸
       </h1>
       <p data-aos="fade-up" data-aos-delay="250">
-        Udah nambah umur aja nihh...<br/>
+        Udah nambah umur aja nihh...<br />
         Semoga semua doa-doamu terkabul ya 💕
       </p>
       <button
@@ -76,7 +99,7 @@
       <span class="heart-icon" data-aos="zoom-in">❤️</span>
 
       <div class="calendar-full" data-aos="fade-up" data-aos-delay="100">
-        <div class="calendar-title" id="calendar-title">January 2025</div>
+        <div class="calendar-title" id="calendar-title">May 2026</div>
         <div class="calendar-grid">
           <!-- Header -->
           <div class="day">Sun</div>
@@ -86,37 +109,39 @@
           <div class="day">Thu</div>
           <div class="day">Fri</div>
           <div class="day">Sat</div>
-          <!-- Empty before Wed Jan 1 -->
+          <!-- Empty before Fri May 1 -->
+          <span></span>
+          <span></span>
           <span></span>
           <span></span>
           <span></span>
           <!-- Dates -->
-          <span>1</span><span>2</span><span>3</span><span>4</span>
-          <span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span>
-          <span>12</span><span>13</span><span>14</span><span>15</span><span>16</span><span>17</span><span>18</span>
-          <span>19</span><span>20</span><span>21</span><span>22</span><span>23</span><span>24</span><span>25</span>
-          <span>26</span><span>27</span><span>28</span><span>29</span><span>30</span>
-          <!-- Special day -->
-          <span class="special" id="calendar-special">31 ❤️</span>
+          <span>1</span><span>2</span> <span>3</span><span>4</span><span>5</span
+          ><span>6</span><span class="special" id="calendar-special">7 ❤️</span
+          ><span>8</span><span>9</span> <span>10</span><span>11</span
+          ><span>12</span><span>13</span><span>14</span><span>15</span
+          ><span>16</span> <span>17</span><span>18</span><span>19</span
+          ><span>20</span><span>21</span><span>22</span><span>23</span>
+          <span>24</span><span>25</span><span>26</span><span>27</span
+          ><span>28</span><span>29</span><span>30</span>
+          <span>31</span>
         </div>
       </div>
 
       <h2 data-aos="fade-up">Hari ini pasti spesial banget ya</h2>
       <p data-aos="fade-up" data-aos-delay="100">
-        Maaf ya aku kasih hadiahnya telat...<br/>
+        Maaf ya aku kasih hadiahnya telat...<br />
         tapi niatnya selalu yang terbaik buat kamu 💕
       </p>
 
       <!-- Dana surprise (hidden) -->
       <div id="danaSurprise" class="hidden" data-aos="fade-up">
         <h3>🎉 Surprise kecil</h3>
-        <p>Bukan soal jumlahnya,<br/>tapi niatnya.</p>
+        <p>Bukan soal jumlahnya,<br />tapi niatnya.</p>
       </div>
 
       <div class="heart-actions" data-aos="fade-up" data-aos-delay="200">
-        <a href="love.html" class="btn-open">
-          💌 Buka Pesan
-        </a>
+        <a href="love.html" class="btn-open"> 💌 Buka Pesan </a>
       </div>
     </section>
 
@@ -124,11 +149,11 @@
     <section id="closing" class="section">
       <div class="closing-card" data-aos="fade-up">
         <p>
-          Semoga hidup selalu<br/>
-          lembut ke kamu.<br/><br/>
-          Tetap jadi versi terbaik<br/>
-          dari dirimu sendiri.<br/><br/>
-          Dan jangan lupa...<br/>
+          Semoga hidup selalu<br />
+          lembut ke kamu.<br /><br />
+          Tetap jadi versi terbaik<br />
+          dari dirimu sendiri.<br /><br />
+          Dan jangan lupa...<br />
           kamu itu berharga. ❤️
         </p>
         <span class="author">— dari seseorang yang peduli</span>

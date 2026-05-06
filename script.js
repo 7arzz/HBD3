@@ -7,9 +7,9 @@
 const CONFIG = {
   name: "[nama]",           // Ganti dengan nama yang berulang tahun
   nickname: "[nama]",       // Nama panggilan untuk teks tertentu
-  date: "January 31",       // Ganti dengan tanggal lahir (e.g. "January 31")
-  monthYear: "January 2025", // Ganti untuk judul kalender
-  specialDay: 31,           // Angka tanggal lahir untuk kalender
+  date: "May 7",             // Ganti dengan tanggal lahir (e.g. "January 31")
+  monthYear: "May 2026",     // Ganti untuk judul kalender
+  specialDay: 7,             // Angka tanggal lahir untuk kalender
 };
 
 // ── AOS ────────────────────────────────────────────────────
@@ -92,7 +92,7 @@ function openGift() {
     particleCount: 120,
     spread: 90,
     origin: { y: 0.55 },
-    colors: ['#ff4d8d', '#ff85b3', '#ff3cac', '#ffffff', '#ffaacc'],
+    colors: ['#a855f7', '#c084fc', '#d8b4fe', '#ffffff', '#e9d5ff'],
   });
 
   // Second burst with delay
@@ -102,14 +102,14 @@ function openGift() {
       spread: 70,
       angle: 60,
       origin: { x: 0.1, y: 0.55 },
-      colors: ['#ff4d8d', '#ffd6e7', '#ffffff'],
+      colors: ['#a855f7', '#e9d5ff', '#ffffff'],
     });
     confetti({
       particleCount: 80,
       spread: 70,
       angle: 120,
       origin: { x: 0.9, y: 0.55 },
-      colors: ['#ff4d8d', '#ffd6e7', '#ffffff'],
+      colors: ['#a855f7', '#e9d5ff', '#ffffff'],
     });
   }, 300);
 
@@ -122,7 +122,7 @@ function specialDay() {
     particleCount: 200,
     spread: 120,
     origin: { y: 0.6 },
-    colors: ['#ff4d8d', '#ff85b3', '#ff3cac'],
+    colors: ['#a855f7', '#c084fc', '#d8b4fe'],
   });
 }
 
@@ -150,7 +150,7 @@ function specialDay() {
       dx:   (Math.random() - 0.5) * 0.3,
       dy:   -0.15 - Math.random() * 0.25,
       alpha: 0.1 + Math.random() * 0.5,
-      hue:   330 + Math.random() * 30,
+      hue:   260 + Math.random() * 30,
     };
   }
 
